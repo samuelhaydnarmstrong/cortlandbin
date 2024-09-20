@@ -19,9 +19,9 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-geist-sans);
 }
 
 * {
@@ -41,12 +41,6 @@ a {
   }
 }
 
-button {
-  width: 60vw;
-  height: 10vh;
-  margin-bottom: 5vh;
-}
-
 #title {
   padding: 2vh;
   font-size: 1.4em;
@@ -59,13 +53,13 @@ button {
 
 #status-icon {
   font-size: 34vh;
-  margin-top: 3vh;
+  margin-top: 10vh;
 }
 
 #status-title {
   font-weight: bold;
   letter-spacing: 0.2em;
-  font-size: 1.5em;
+  font-size: 2.3em;
   color: white;
   margin-bottom: 1vh;
   margin-top: 2vh;
@@ -80,9 +74,17 @@ button {
   bottom: 0;
   position: absolute;
   display: flex;
-  flex-direction: column;
   width: -webkit-fill-available;
   align-items: center;
   background: #393939;
-  padding-top: 5vh;
+  padding: 14vh 3vh 3vh 3vh;
+  gap: 2vh;
+}
+
+button {
+  width: 60vw;
+  height: 8vh;
+  background: #b7b7b7;
+  color: #393939;
+  font-size: 1.1em;
 }
