@@ -1,5 +1,5 @@
 :root {
-  --background: #ffffff;
+  --background: black;
   --foreground: #171717;
 }
 
@@ -39,4 +39,48 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+button {
+  width: 60vw;
+  height: 10vh;
+  margin-bottom: 5vh;
+}
+
+#title {
+  padding: 2vh;
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #c9c9c9;
+  background: #3d3d3d;
+}
+
+#status-icon {
+  font-size: 21em;
+  margin-top: 3vh;
+}
+
+#status-title {
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  font-size: 1.5em;
+  color: white;
+  margin-bottom: 1vh;
+  margin-top: 2vh;
+}
+
+#last-updated {
+  color: darkgrey;
+  font-size: 0.7em;
+}
+
+#button-area {
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: -webkit-fill-available;
+  align-items: center;
+  background: #393939;
+  padding-top: 5vh;
 }
