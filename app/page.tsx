@@ -24,12 +24,12 @@ export default function Home() {
 
   let relativeDate = "";
   if (lastUpdated) {
-    relativeDate = formatDistance(lastUpdated, new Date().toLocaleString(), { addSuffix: true });
+    relativeDate = formatDistance(lastUpdated, new Date().toString(), { addSuffix: true });
   }
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div id="title">Cortland Yard Chute Status</div>
+      <div id="title">Colliers Yard Chute Status</div>
       {localStatus == "" ? (
         <Image style={{ marginTop: "15vh" }} width={100} src={spinner} alt="spinner"></Image>
       ) : (
@@ -44,7 +44,7 @@ export default function Home() {
           onClick={() => {
             fetch("/server", { method: "POST", body: "CLEAR" });
             setLocalStatus("CLEAR");
-            setLastUpdated(new Date().toLocaleString());
+            setLastUpdated(new Date().toString());
           }}
         >
           CLEAR
@@ -53,7 +53,7 @@ export default function Home() {
           onClick={() => {
             fetch("/server", { method: "POST", body: "BLOCKED" });
             setLocalStatus("BLOCKED");
-            setLastUpdated(new Date().toLocaleString());
+            setLastUpdated(new Date().toString());
           }}
         >
           BLOCKED

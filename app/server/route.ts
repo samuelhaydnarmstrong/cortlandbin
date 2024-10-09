@@ -10,10 +10,10 @@ export async function POST(request: Request) {
   const body = await request.text();
   if (body === "BLOCKED") {
     kv.set("status", "BLOCKED");
-    kv.set("lastUpdated", new Date().toLocaleString());
+    kv.set("lastUpdated", new Date().toString());
   } else if (body === "CLEAR") {
     kv.set("status", "CLEAR");
-    kv.set("lastUpdated", new Date().toLocaleString());
+    kv.set("lastUpdated", new Date().toString());
   }
   return Response.json("OK");
 }
