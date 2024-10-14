@@ -9,14 +9,9 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
-  title: "Cortland Chute Status",
+  title: "Colliers Status",
 };
 
 export default function RootLayout({
@@ -28,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <Analytics />
       <SpeedInsights />
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+      <body className={`${geistSans.variable}`}>{children}</body>
     </html>
   );
 }
