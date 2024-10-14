@@ -25,6 +25,8 @@ export default function Home() {
     setGymUpdated(response.gymUpdated);
   };
 
+  const gymEnabled = window?.location?.search === "?gym";
+
   useEffect(() => {
     localAsyncGetStatus();
   }, []);
@@ -76,58 +78,62 @@ export default function Home() {
         </>
       )}
 
-      <div id="title">Gym Status</div>
-      {gymStatus == "" ? (
-        <Image id="spinner" width={60} src={spinner} alt="spinner"></Image>
-      ) : (
+      {gymEnabled && (
         <>
-          <div id="status-wrapper">
-            <FontAwesomeIcon id="status-icon" style={{ color: gymStatus === "QUIET" ? "green" : "red" }} icon={gymStatus === "QUIET" ? faPerson : faPeopleGroup} />
-            <div>
-              <div id="status-title">{gymStatus}</div>
-              <div id="last-updated">{relativeGymDate}</div>
-            </div>
-          </div>
-          {gymStatus === "BUSY" && (
-            <div
-              style={{
-                margin: "2vh auto 0 auto",
-                display: "flex",
-                alignItems: "center",
-                color: "white",
-                width: "fit-content",
-                textAlign: "center",
-                background: "#0064bd",
-                borderRadius: "15px",
-                padding: "8px 8px",
-              }}
-            >
-              <FontAwesomeIcon icon={faInfoCircle} style={{ fontSize: "25px", marginRight: "10px" }} />
-              <div>
-                Reverts to <b>Quiet</b> after one hour
+          <div id="title">Gym Status</div>
+          {gymStatus == "" ? (
+            <Image id="spinner" width={60} src={spinner} alt="spinner"></Image>
+          ) : (
+            <>
+              <div id="status-wrapper">
+                <FontAwesomeIcon id="status-icon" style={{ color: gymStatus === "QUIET" ? "green" : "red" }} icon={gymStatus === "QUIET" ? faPerson : faPeopleGroup} />
+                <div>
+                  <div id="status-title">{gymStatus}</div>
+                  <div id="last-updated">{relativeGymDate}</div>
+                </div>
               </div>
-            </div>
+              {gymStatus === "BUSY" && (
+                <div
+                  style={{
+                    margin: "2vh auto 0 auto",
+                    display: "flex",
+                    alignItems: "center",
+                    color: "white",
+                    width: "fit-content",
+                    textAlign: "center",
+                    background: "#0064bd",
+                    borderRadius: "15px",
+                    padding: "8px 8px",
+                  }}
+                >
+                  <FontAwesomeIcon icon={faInfoCircle} style={{ fontSize: "25px", marginRight: "10px" }} />
+                  <div>
+                    Reverts to <b>Quiet</b> after one hour
+                  </div>
+                </div>
+              )}
+              <div id="button-area">
+                <button
+                  onClick={() => {
+                    fetch("/server", { method: "POST", body: "QUIET" });
+                    setGymStatus("QUIET");
+                    setGymUpdated(new Date().toString());
+                  }}
+                >
+                  QUIET
+                </button>
+                <button
+                  onClick={() => {
+                    fetch("/server", { method: "POST", body: "BUSY" });
+                    setGymStatus("BUSY");
+                    setGymUpdated(new Date().toString());
+                  }}
+                >
+                  BUSY
+                </button>
+              </div>
+            </>
           )}
-          <div id="button-area">
-            <button
-              onClick={() => {
-                fetch("/server", { method: "POST", body: "QUIET" });
-                setGymStatus("QUIET");
-                setGymUpdated(new Date().toString());
-              }}
-            >
-              QUIET
-            </button>
-            <button
-              onClick={() => {
-                fetch("/server", { method: "POST", body: "BUSY" });
-                setGymStatus("BUSY");
-                setGymUpdated(new Date().toString());
-              }}
-            >
-              BUSY
-            </button>
-          </div>
         </>
       )}
     </div>
