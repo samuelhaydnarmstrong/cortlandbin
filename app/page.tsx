@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import spinner from "./giphy.webp";
 import Image from "next/image";
 
+let gymEnabled = false;
+
 export default function Home() {
   const [chuteStatus, setChuteStatus] = useState<string>("");
   const [chuteUpdated, setChuteUpdated] = useState<string>("");
@@ -25,9 +27,8 @@ export default function Home() {
     setGymUpdated(response.gymUpdated);
   };
 
-  const gymEnabled = window?.location?.search === "?gym";
-
   useEffect(() => {
+    gymEnabled = window?.location?.search === "?gym";
     localAsyncGetStatus();
   }, []);
 
